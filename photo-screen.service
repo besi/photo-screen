@@ -1,12 +1,23 @@
+# /etc/systemd/system/photo-screen.service
+# sudo systemctl daemon-reload
+# sudo systemctl enable photo-screen
+# sudo systemctl start photo-screen
+# tail -f /var/log/syslog
+
 [Unit]
-Description=VideoButton Software Update
-Wants=network-online.target
-After=network-online.target
+Wants=sound.target
+After=sound.target
 
 [Service]
+Type=simple
 User=pi
-WorkingDirectory=/home/pi/photo-screen/
-ExecStart=./start.sh
+Group=pi
+WorkingDirectory=/home/pi/photo-screen
+ExecStart=/home/pi/photo-screen/start.sh
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+RestartSec=1
 
 [Install]
-WantedBy=network-online.target
+WantedBy=multi-user.target
