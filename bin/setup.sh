@@ -20,3 +20,4 @@ sudo cp software-update.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable software-update
 sudo systemctl start software-update
+sudo service cron start
