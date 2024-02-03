@@ -1,7 +1,5 @@
 #!/bin/bash
 
-MINUTES=5
-sleep $((MINUTES * 60))
 git fetch
 UPSTREAM=origin
 LOCAL=$(git rev-parse @)
