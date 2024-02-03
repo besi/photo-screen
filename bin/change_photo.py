@@ -5,7 +5,7 @@ import random
 import glob
 
 dir = 'photos'
-dir_backup = f"{dir}_backup"
+dir_old = f"{dir}_old"
 dir = '/home/pi/photo-screen/photos'
 
 
@@ -19,7 +19,7 @@ photos = []
 photos = get_photos(photos, dir)
 if len(photos) == 0:
     print("Start afresh...")
-    os.system(f"mv {dir_backup}/* {dir}/")
+    os.system(f"mv {dir_old}/* {dir}/")
     photos = get_photos(photos, dir)
 
 # Pick a random file
@@ -27,4 +27,4 @@ photo = random.choice (photos)
 print(photo)
 
 os.system(f"/home/pi/inky/examples/7color/image.py {photo}")
-os.system(f"mv {photo} {dir_backup}")
+os.system(f"mv {photo} {dir_old}")
