@@ -4,10 +4,8 @@ import os
 import random
 import glob
 
-dir = 'photos'
-dir_old = f"{dir}_old"
 dir = '/home/pi/photo-screen/photos'
-
+dir_old = f"{dir}_old"
 
 def get_photos(photos, dir):
     types = ('*.jpg', '*.png')
