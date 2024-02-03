@@ -5,8 +5,7 @@ After=network-online.target
 
 [Service]
 User=pi
-WorkingDirectory=/home/pi/photo-screen/pi
-ExecStart=./bin/software-update.sh
+ExecStart=/home/pi/photo-screen/bin/software-update.sh
 
 [Install]
 WantedBy=network-online.target

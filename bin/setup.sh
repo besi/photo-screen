@@ -16,7 +16,7 @@ git clone https://github.com/pimoroni/inky
 
 
 # Software update
-sudo cp etc/software-update.service /etc/systemd/system/
+sudo cp software-update.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable software-update
 sudo systemctl start software-update
