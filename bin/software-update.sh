@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Startup sleep to make sure there is network connection
 MINUTES=5
 sleep $((MINUTES * 60))
 git fetch
@@ -11,8 +10,6 @@ BASE=$(git merge-base @ "$UPSTREAM")
 
 if [ $LOCAL != $REMOTE ]; then
     echo "Updating software from $LOCAL to $REMOTE"
-    git reset --hard master
+    git reset --hard main
     git pull
-    bin/post_software_update.sh
-    sudo systemctl restart photo-screen
 fi
