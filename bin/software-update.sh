@@ -12,4 +12,5 @@ if [ $LOCAL != $REMOTE ]; then
     echo "Updating software from $LOCAL to $REMOTE"
     git reset --hard main
     git pull
+    bin/post_software_update.sh
 fi
