@@ -9,7 +9,9 @@ import json
 import requests
 from urllib.parse import urlparse
 
-def get_host_and_stream(base_api_url):
+def get_host_and_stream(album_url):
+    base_api_url = f"https://p23-sharedstreams.icloud.com/{urlparse(album_url).fragment}/sharedstreams"
+
     headers = {'Content-Type': 'application/json'}
     data = json.dumps({"streamCtag": None})
     response = requests.post(base_api_url + "/webstream", headers=headers, data=data)
@@ -66,6 +68,16 @@ def download_files(base_api_url, stream, limit):
             else:
                 print(f"skipping file type .{file_ext}")
 
+def download_album(album_url, download_dir, limit=1000):
+
+    if not os.path.exists(download_dir):
+        os.makedirs(download_dir)
+    
+    base_api_url, stream = get_host_and_stream(album_url)
+    # pretty_stream = json.dumps(stream, indent=4)
+    # print(pretty_stream)    
+    download_files(base_api_url, stream, limit)
+
 
 if __name__ == "__main__":
     import sys
@@ -74,11 +86,10 @@ if __name__ == "__main__":
     download_dir = sys.argv[2] if len(sys.argv) > 2 else '.'
     limit = int(sys.argv[3]) if len(sys.argv) > 3 else 1000
 
-    if not os.path.exists(download_dir):
-        os.makedirs(download_dir)
+    download_album(album_url, download_dir, limit)
 
-    base_api_url = f"https://p23-sharedstreams.icloud.com/{urlparse(album_url).fragment}/sharedstreams"
-    base_api_url, stream = get_host_and_stream(base_api_url)
-    # pretty_stream = json.dumps(stream, indent=4)
-    # print(pretty_stream)    
-    download_files(base_api_url, stream, limit)
+    
+
+    
+    
+    
