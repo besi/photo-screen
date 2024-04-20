@@ -1,0 +1,9 @@
+[Unit]
+Description=Handle Buttons Service
+After=network-online.target
+
+[Service]
+ExecStart=/home/pi/photo-screen/bin/handle_buttons.py
+
+[Install]
+WantedBy=default.target
