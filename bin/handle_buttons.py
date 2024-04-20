@@ -34,9 +34,12 @@ def handle_button(pin):
     label = LABELS[BUTTONS.index(pin)]
     print("Button press detected on pin: {} label: {}".format(pin, label))
 
+    if label == 'A':
+        os.system('./next_photo.py')
+
     if label == 'D':
         print("Wake up wlan")
-        os.system('curl https://google.ch')
+        os.system('ping -c 2 google.ch')
 
 
 # Loop through out buttons and attach the "handle_button" function to each

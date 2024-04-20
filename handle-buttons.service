@@ -3,6 +3,7 @@ Description=Handle Buttons Service
 After=network-online.target
 
 [Service]
+WorkingDirectory=/home/pi/photo-screen/bin
 ExecStart=/home/pi/photo-screen/bin/handle_buttons.py
 
 [Install]
