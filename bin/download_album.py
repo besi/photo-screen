@@ -81,8 +81,8 @@ def download_album(album_url, download_dir, limit=1000):
         os.makedirs(download_dir)
     
     base_api_url, stream = get_host_and_stream(album_url)
-    pretty_stream = json.dumps(stream, indent=4)
-    print(pretty_stream)    
+    #pretty_stream = json.dumps(stream, indent=4)
+    #print(pretty_stream)    
     new_photos = download_files(base_api_url, stream, limit)
     return new_photos
 
