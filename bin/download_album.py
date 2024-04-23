@@ -42,8 +42,14 @@ def get_checksum(photo):
 
 
 def download_files(base_api_url, stream, limit):
+
     allowed_extensions = ['jpg', 'jpeg', 'png']
-    items = stream['items']
+    new_photos = []
+
+    headers = {'Content-Type': 'application/json'}
+    data = json.dumps({"photoGuids": [photo["photoGuid"] for photo in stream["photos"]]})
+    response = requests.post(base_api_url + "/webasseturls", headers=headers, data=data)
+    items = response.json()['items']
 
     for photo in stream['photos'][:limit]:
         checksum = get_checksum(photo)
@@ -57,16 +63,17 @@ def download_files(base_api_url, stream, limit):
             if file_ext in allowed_extensions:
 
                 if not os.path.exists(filepath):
-                    print(f"Downloading: {filename}")
+                    print(f"Download: {filename}")
                     resp = requests.get(url)
-                    print(f"status: {resp.status_code}")
                     with open(filepath, 'wb') as f:
                         f.write(resp.content)
+                    new_photos.append(filepath)
                 else:
                     print(f"File {filename} already present.")
 
             else:
                 print(f"skipping file type .{file_ext}")
+    return new_photos
 
 def download_album(album_url, download_dir, limit=1000):
 
@@ -74,9 +81,10 @@ def download_album(album_url, download_dir, limit=1000):
         os.makedirs(download_dir)
     
     base_api_url, stream = get_host_and_stream(album_url)
-    # pretty_stream = json.dumps(stream, indent=4)
-    # print(pretty_stream)    
-    download_files(base_api_url, stream, limit)
+    pretty_stream = json.dumps(stream, indent=4)
+    print(pretty_stream)    
+    new_photos = download_files(base_api_url, stream, limit)
+    return new_photos
 
 
 if __name__ == "__main__":
@@ -86,7 +94,8 @@ if __name__ == "__main__":
     download_dir = sys.argv[2] if len(sys.argv) > 2 else '.'
     limit = int(sys.argv[3]) if len(sys.argv) > 3 else 1000
 
-    download_album(album_url, download_dir, limit)
+    new_photos = download_album(album_url, download_dir, limit)
+    print(f"New Photos: {new_photos}")
 
     
 

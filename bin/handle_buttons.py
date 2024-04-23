@@ -38,8 +38,8 @@ def handle_button(pin):
         os.system('./next_photo.py')
 
     if label == 'D':
-        print("Wake up wlan")
-        os.system('ping -c 2 google.ch')
+        print("switch wlan power management off")
+        os.system('sudo iw wlan0 set power_save off')
 
 
 # Loop through out buttons and attach the "handle_button" function to each
