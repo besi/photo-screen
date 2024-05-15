@@ -1,2 +1,7 @@
 photos
 photos_old
+
+*.pyc
+
+# Python virtual environments (venv)
+.venv/
