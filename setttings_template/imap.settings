@@ -1,0 +1,7 @@
+{
+    "host": "outlook.office365.com",
+    "port": 993,
+    "user": "example@outlook.com",
+    "password": "very-secret",
+    "delete_after_download": false
+}

@@ -1,0 +1,7 @@
+{
+    "photos_dir": "/home/pi/photos",
+    "orientation": "landscape",
+    "saturation": 0.5,
+    "imap": "on",
+    "icloudphotos": "on"
+}
