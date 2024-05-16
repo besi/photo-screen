@@ -1,0 +1,11 @@
+[Unit]
+Description=Handle Buttons Service
+After=default.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/photo-screen/photoscreen
+ExecStart=/home/pi/photo-screen/photoscreen/handle_buttons.py
+
+[Install]
+WantedBy=default.target

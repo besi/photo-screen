@@ -1,0 +1,12 @@
+[Unit]
+Description=Next Photo Service
+After=default.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/photo-screen/photoscreen
+ExecStart=/home/pi/photo-screen/photoscreen/next_photo.py
+Restart=no
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Fetch New Photos from IMAP, iCloud
+After=default.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/photo-screen/photoscreen
+ExecStart=/home/pi/photo-screen/photoscreen/fetch_all.py
+Restart=no
+
+[Install]
+WantedBy=default.target

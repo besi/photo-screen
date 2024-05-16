@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Fetch All Service every 5min and on start up
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Unit=fetch_all.service
+
+[Install]
+WantedBy=timers.target
