@@ -1,21 +1,10 @@
-Download images
----------------
+# Photo-Screen
 
-    ./download-album http://icloud.com/shared-album/xyz/ photos
+Display your shared fotos on a color eink display.
 
+## Mobile App
 
-Cronjob
--------
-
-
-    # Change the photo every day at 3am
-    0 3 * * * /home/pi/photo-screen/bin/change_photo.py
-    # Change the photo on reboot
-    @reboot /home/pi/photo-screen/bin/change_photo.py
-
-
-    # Testing: Change it every 25 Minutes
-    */25 * * * * /home/pi/photo-screen/bin/change_photo.py
+Internal Beta: <http://github.com/besi/photo-screen-app>
 
 ## Hardware
 ![](hardware/inky5inch7/PhotoscreenFrame-5inch7.png)
