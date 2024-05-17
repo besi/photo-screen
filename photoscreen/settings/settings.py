@@ -1,5 +1,14 @@
 import os
 import json
+import fcntl
+
+def lock_file(file):
+    """ Lock the file for writing in a Unix-based system. """
+    fcntl.flock(file.fileno(), fcntl.LOCK_EX)
+
+def unlock_file(file):
+    """ Unlock the file. """
+    fcntl.flock(file.fileno(), fcntl.LOCK_UN)
 
 def get_settings_path():
     return os.path.expanduser('~/.photoscreen')
@@ -29,6 +38,9 @@ def save_settings(filename, settings):
     settings_path = os.path.join(home_dir, filename)
     try:
         with open(settings_path, 'w') as file:
+            lock_file(file)
             json.dump(settings, file, indent=4)
+            unlock_file(file)
     except:
         print(f'error writing file: {settings_path}')
+        unlock_file(file)

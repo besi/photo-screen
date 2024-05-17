@@ -27,19 +27,22 @@ def is_module_available(module_name):
     except ImportError:
         return False
 
-def show_image(photo_name, photos_dir, saturation = 0.5, portrait = False):
+def show_image(photo_name, photos_dir, settings):
     filepath = os.path.join(photos_dir, photo_name)
-    show_imagepath(filepath, saturation, portrait)
+    show_imagepath(filepath, settings)
     
 
-def show_imagepath(filepath, saturation = 0.5, portrait = False):
+def show_imagepath(filepath, settings):
+    saturation = settings.get('saturation', 0.5)
+    orientation = settings.get('orientation', 'landscape')
+
     inky_auto = dynamic_import('inky.auto', 'auto')
     if inky_auto:
         display = inky_auto(ask_user=True, verbose=True)
     else:
         display = InkyMock()
     image = Image.open(filepath)
-    if portrait:
+    if orientation == 'portrait':
         image = image.transpose(Image.Transpose.ROTATE_90)
 
     if image.height > image.width:

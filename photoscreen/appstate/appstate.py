@@ -56,7 +56,7 @@ def display_photo(photofile):
     general_settings = settings.load_settings('general.settings')
     photos_dir = general_settings.get('photos_dir')
 
-    inkydisplay.show_image(photofile, photos_dir)
+    inkydisplay.show_image(photofile, photos_dir, general_settings)
 
 def update_state(new_pos, index, state):
     photo_to_display = index[new_pos]

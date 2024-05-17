@@ -2,7 +2,7 @@
 
 # arg 1: iCloud web album URL
 # arg 2: folder to download into. Default: current folder
-# arg 3: limit – max number of photos that will be downloaded. Default: 1000
+# arg 3: limit – max number of photos that will be downloaded. Default: 100
 
 """ 
 Module for downloading public icloud photo stream, adapted from a shell script, Marco Klingmann
