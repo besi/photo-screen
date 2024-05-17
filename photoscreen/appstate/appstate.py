@@ -52,14 +52,14 @@ def sort_index(index):
     index = unseen + already_seen
     return index
 
-def display_photo(photofile, mode='auto'):
+def display_photo(photofile, mode=None):
     general_settings = settings.load_settings('general.settings')
     photos_dir = general_settings.get('photos_dir')
 
     mode = inkydisplay.show_image(photofile, photos_dir, general_settings, mode)
     return mode
 
-def update_state(new_pos, index, state, mode='auto'):
+def update_state(new_pos, index, state, mode=None):
     photo_to_display = index[new_pos]
     photo_to_display['view_count'] = photo_to_display['view_count'] + 1
     photofile = photo_to_display['file']

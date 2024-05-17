@@ -27,14 +27,17 @@ def is_module_available(module_name):
     except ImportError:
         return False
 
-def show_image(photo_name, photos_dir, settings, mode='auto'):
+def show_image(photo_name, photos_dir, settings, mode=None):
     filepath = os.path.join(photos_dir, photo_name)
     return show_imagepath(filepath, settings, mode)
     
 
-def show_imagepath(filepath, settings, mode='auto'):
+def show_imagepath(filepath, settings, mode=None):
     saturation = settings.get('saturation', 0.5)
     orientation = settings.get('orientation', 'landscape')
+
+    if mode == None:
+        mode = settings.get('mode', 'zoom')
 
     inky_auto = dynamic_import('inky.auto', 'auto')
     if inky_auto:

@@ -5,3 +5,5 @@ photos_old
 
 # Python virtual environments (venv)
 .venv/
+/photoscreen/pyvenv.cfg
+/photoscreen/bin
