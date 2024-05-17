@@ -16,3 +16,6 @@ Cronjob
 
     # Testing: Change it every 25 Minutes
     */25 * * * * /home/pi/photo-screen/bin/change_photo.py
+
+## Hardware
+![](hardware/inky5inch7/PhotoscreenFrame-5inch7.png)
