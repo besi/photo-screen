@@ -52,22 +52,23 @@ def sort_index(index):
     index = unseen + already_seen
     return index
 
-def display_photo(photofile):
+def display_photo(photofile, mode='auto'):
     general_settings = settings.load_settings('general.settings')
     photos_dir = general_settings.get('photos_dir')
 
-    inkydisplay.show_image(photofile, photos_dir, general_settings)
+    mode = inkydisplay.show_image(photofile, photos_dir, general_settings, mode)
+    return mode
 
-def update_state(new_pos, index, state):
+def update_state(new_pos, index, state, mode='auto'):
     photo_to_display = index[new_pos]
     photo_to_display['view_count'] = photo_to_display['view_count'] + 1
     photofile = photo_to_display['file']
     
-    display_photo(photofile)
+    new_mode = display_photo(photofile, mode=mode)
 
     #update state
     index[new_pos] = photo_to_display
-    state = {'pos': new_pos, 'file': photofile}
+    state = {'pos': new_pos, 'file': photofile, 'mode': new_mode}
 
     save_appstate(index, state)
     return photofile 
@@ -93,7 +94,7 @@ def appstate_next():
     pos = state.get('pos', 0)
     new_pos = pos + 1
 
-    if 0 <= pos < len(index) and 0 <= new_pos < len(index):
+    if 0 <= new_pos < len(index):
         return update_state(new_pos, index, state)
 
 def appstate_prev():
@@ -101,5 +102,18 @@ def appstate_prev():
 
     pos = state.get('pos', 0)
     new_pos = pos - 1
-    if 0 <= pos < len(index) and 0 <= new_pos < len(index):
+    if 0 <= new_pos < len(index):
         return update_state(new_pos, index, state)
+    
+def appstate_toggle_mode():
+    index, state = read_appstate()
+
+    new_pos = state.get('pos', 0)
+    mode = state.get('mode', 'auto')
+    if (mode == 'zoom'):
+        override_mode = 'letterbox'
+    if (mode == 'letterbox'):
+        override_mode = 'zoom'
+    
+    if 0 <= new_pos < len(index):
+        return update_state(new_pos, index, state, override_mode)

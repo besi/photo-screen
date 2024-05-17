@@ -40,7 +40,8 @@ def handle_B():
     appstate.appstate_prev()
 
 def handle_C():
-    print('Button C')
+    print('Button C: Toggle mode')
+    appstate.appstate_toggle_mode()
 
 def handle_D():
     print("switch wlan power management off")

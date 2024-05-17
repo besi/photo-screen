@@ -27,12 +27,12 @@ def is_module_available(module_name):
     except ImportError:
         return False
 
-def show_image(photo_name, photos_dir, settings):
+def show_image(photo_name, photos_dir, settings, mode='auto'):
     filepath = os.path.join(photos_dir, photo_name)
-    show_imagepath(filepath, settings)
+    return show_imagepath(filepath, settings, mode)
     
 
-def show_imagepath(filepath, settings):
+def show_imagepath(filepath, settings, mode='auto'):
     saturation = settings.get('saturation', 0.5)
     orientation = settings.get('orientation', 'landscape')
 
@@ -42,16 +42,25 @@ def show_imagepath(filepath, settings):
     else:
         display = InkyMock()
     image = Image.open(filepath)
+    
     if orientation == 'portrait':
         image = image.transpose(Image.Transpose.ROTATE_90)
-
-    if image.height > image.width:
+    
+    if mode == 'auto':
+        if image.height > image.width:
+            mode = 'letterbox'
+        else:
+            mode = 'zoom'
+    
+    if mode == 'letterbox':
         resized_image = ImageOps.pad(image, display.resolution, color="#fff")
     else:
         resized_image = ImageOps.fit(image, display.resolution)
+    
     display.set_image(resized_image, saturation=saturation)
     display.set_border(display.WHITE)
     display.show()
+    return mode
 
 if __name__ == "__main__":
     import sys
