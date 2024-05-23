@@ -45,6 +45,7 @@ def show_imagepath(filepath, settings, mode=None):
     else:
         display = InkyMock()
     image = Image.open(filepath)
+    image = ImageOps.exif_transpose(image)
     
     if orientation == 'portrait':
         image = image.transpose(Image.Transpose.ROTATE_90)

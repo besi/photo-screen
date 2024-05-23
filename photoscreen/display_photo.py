@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from inkydisplay import inkydisplay
 from settings import settings
 
