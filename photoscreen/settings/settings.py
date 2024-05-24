@@ -44,3 +44,9 @@ def save_settings(filename, settings):
     except:
         print(f'error writing file: {settings_path}')
         unlock_file(file)
+
+def delete_settings(filename):
+    # Construct the path to the settings file
+    home_dir = get_settings_path()
+    settings_path = os.path.join(home_dir, filename)
+    os.system(f'rm {settings_path}')

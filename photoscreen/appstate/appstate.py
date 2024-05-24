@@ -117,3 +117,10 @@ def appstate_toggle_mode():
     
     if 0 <= new_pos < len(index):
         return update_state(new_pos, index, state, override_mode)
+
+def reset_and_delete():
+    general_settings = settings.load_settings('general.settings')
+    photos_dir = general_settings.get('photos_dir')
+    os.system(f'rm {photos_dir}/*')
+    settings.delete_settings('photos.index')
+    settings.delete_settings('app.state')
