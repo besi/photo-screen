@@ -2,7 +2,6 @@
 Description=Run Next Photo Service daily at 5 AM
 
 [Timer]
-OnUnitActiveSec=25min
 OnCalendar=*-*-* 05:00:00
 Unit=next_photo.service
 
