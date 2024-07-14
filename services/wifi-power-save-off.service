@@ -1,0 +1,6 @@
+[Unit]
+Description=Disable WiFi power saving
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/iw dev wlan0 set power_save off

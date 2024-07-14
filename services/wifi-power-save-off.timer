@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer to disable WiFi power save mode 3 minutes after boot
+
+[Timer]
+OnBootSec=3min
+Unit=wifi-power-save-off.service
+
+[Install]
+WantedBy=timers.target
