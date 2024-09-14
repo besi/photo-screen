@@ -18,3 +18,6 @@ sudo systemctl start next_photo.timer
 
 sudo systemctl enable fetch_all.timer
 sudo systemctl start fetch_all.timer
+
+sudo systemctl enable wifi-power-save-off.timer
+sudo systemctl start wifi-power-save-off.timer
